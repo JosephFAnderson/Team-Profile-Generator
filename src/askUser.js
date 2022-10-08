@@ -66,10 +66,10 @@ function getManager(){
                     getEngineer();
                     break;
                 case 'Intern':
-                    console.log('Add an Intern!');
+                    getIntern();
                     break;
                 case 'That is all':
-                    console.log('Make my webpage!');
+                    console.log(teamArray);
                     break;
             }
         })
@@ -135,10 +135,79 @@ function getEngineer(){
                     getEngineer();
                     break;
                 case 'Intern':
-                    console.log('Add an Intern!');
+                    getIntern();
                     break;
                 case 'That is all':
-                    console.log('Make my webpage!');
+                    console.log(teamArray);
+                    break;
+            }
+        })
+}
+
+function getIntern(){
+    inquirer
+        .prompt([
+            {
+                name: "name",
+                type: "input",
+                message: "What is the intern's name?",
+                validate: (ans) => {
+                    if (ans === ""){
+                        return 'Please provide a name.'
+                    }
+
+                    return true;
+                }
+            }, {
+                name: "id",
+                type: "input",
+                message: "What is the intern's employee id?",
+                validate: (ans) => {
+                    if (ans === ""){
+                        return 'Please provide an employee id.'
+                    }
+
+                    return true;
+                }
+            }, {
+                name: "email",
+                type: "input",
+                message: "What is the intern's email?",
+                validate: (ans) => {
+                    if (ans === ""){
+                        return 'Please provide an email address.'                        
+                    }
+                    return true;
+                }
+            }, {
+                name: "school",
+                type: "input",
+                message: "What is the school does the intern attend",
+                validate: (ans) => {
+                    if(ans === ""){
+                        return "Please provide a school name";                        
+                    }
+                    return true;                   
+                }
+            }, {
+                name: "more",
+                type: "list",
+                message: "Would you like to add anyone else to the team?",
+                choices: ['Engineer', 'Intern', 'That is all']
+            }
+        ])
+        .then(ans => {
+            teamArray.push(new Intern(ans.name.trim(), ans.id.trim(), ans.email.trim(), ans.school.trim()));
+            
+            switch(ans.more){
+                case 'Engineer':
+                    getEngineer();
+                    break;
+                case 'Intern':
+                    getIntern();
+                    break;
+                case 'That is all':
+                    console.log(teamArray);
                     break;
             }
         })
