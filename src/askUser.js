@@ -1,7 +1,7 @@
 const Manager = require('../lib/manager');
 const Engineer = require('../lib/engineer');
 const Intern = require('../lib/intern');
-const generateHTML = require('./generateHTML');
+const createHTML = require('./generateHTML');
 const inquirer = require('inquirer');
 const teamArray = [];
 
@@ -69,7 +69,7 @@ function getManager(){
                     getIntern();
                     break;
                 case 'That is all':
-                    console.log(teamArray);
+                    createHTML(teamArray);
                     break;
             }
         })
@@ -138,7 +138,7 @@ function getEngineer(){
                     getIntern();
                     break;
                 case 'That is all':
-                    console.log(teamArray);
+                    createHTML(teamArray);
                     break;
             }
         })
@@ -207,10 +207,10 @@ function getIntern(){
                     getIntern();
                     break;
                 case 'That is all':
-                    console.log(teamArray);
+                    createHTML(teamArray);
                     break;
             }
         })
 }
 
-getManager();
+module.exports = getManager;
