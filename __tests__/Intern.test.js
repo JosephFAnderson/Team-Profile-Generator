@@ -27,4 +27,52 @@ const Intern = require('../lib/intern');
                 expect('school' in obj).toEqual(true);
             })
         })
+
+        describe("getName", () => {
+            it("should return return the name of the 'Intern' object", () => {
+                const name = 'Joseph';
+    
+                const obj = new Intern(name);
+    
+                expect(obj.getName()).toEqual(name);
+            })
+        })
+    
+        describe("getId", () => {
+            it("should return return the id of the 'Intern' object", () => {
+                const id = '19';
+    
+                const obj = new Intern('Joseph', id, 'Email');
+    
+                expect(obj.getId()).toEqual(id);
+            })
+        })
+    
+        describe("getEmail", () => {
+            it("should return return the email of the 'Intern' object", () => {
+                const email = 'joseph_anderson11@yahoo.com';
+    
+                const obj = new Intern('Joseph', '19', email);
+    
+                expect(obj.getEmail()).toEqual(email);
+            })
+        })
+
+        describe("getSchool", () => {
+            it("should return the school of the 'Intern' object", () => {
+                const school = 'Georgia Tech';
+
+                const obj = new Intern('Joseph', '19', 'email', school);
+
+                expect(obj.getSchool()).toEqual(school);
+            })
+        })
+    
+        describe("getRole", () => {
+            it("should return the role of the 'Intern' object", () => {
+                const obj = new Intern('J', 1, "ga");
+    
+                expect(obj.getRole()).toEqual('Intern');
+            })
+        })
     })
