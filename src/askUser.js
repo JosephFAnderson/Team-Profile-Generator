@@ -59,11 +59,11 @@ function getManager(){
         ])
         .then(ans => {
             teamArray.push(new Manager(ans.name.trim(), ans.id.trim(), ans.email.trim(), ans.officeNumber.trim()));
-            console.log(teamArray);
+            // console.log(teamArray);
             
             switch(ans.more){
                 case 'Engineer':
-                    console.log('Add an Engineer!');
+                    getEngineer();
                     break;
                 case 'Intern':
                     console.log('Add an Intern!');
@@ -74,3 +74,74 @@ function getManager(){
             }
         })
 }
+
+function getEngineer(){
+    inquirer
+        .prompt([
+            {
+                name: "name",
+                type: "input",
+                message: "What is the engineer's name?",
+                validate: (ans) => {
+                    if (ans === ""){
+                        return 'Please provide a name.'
+                    }
+
+                    return true;
+                }
+            }, {
+                name: "id",
+                type: "input",
+                message: "What is the engineer's employee id?",
+                validate: (ans) => {
+                    if (ans === ""){
+                        return 'Please provide an employee id.'
+                    }
+
+                    return true;
+                }
+            }, {
+                name: "email",
+                type: "input",
+                message: "What is the engineer's email?",
+                validate: (ans) => {
+                    if (ans === ""){
+                        return 'Please provide an email address.'                        
+                    }
+                    return true;
+                }
+            }, {
+                name: "userName",
+                type: "input",
+                message: "What is the engineer's github username",
+                validate: (ans) => {
+                    if(ans === ""){
+                        return "Please provide a github userName";                        
+                    }
+                    return true;                   
+                }
+            }, {
+                name: "more",
+                type: "list",
+                message: "Would you like to add anyone else to the team?",
+                choices: ['Engineer', 'Intern', 'That is all']
+            }
+        ])
+        .then(ans => {
+            teamArray.push(new Engineer(ans.name.trim(), ans.id.trim(), ans.email.trim(), ans.userName.trim()));
+            
+            switch(ans.more){
+                case 'Engineer':
+                    getEngineer();
+                    break;
+                case 'Intern':
+                    console.log('Add an Intern!');
+                    break;
+                case 'That is all':
+                    console.log('Make my webpage!');
+                    break;
+            }
+        })
+}
+
+getManager();
