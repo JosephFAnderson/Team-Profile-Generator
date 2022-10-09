@@ -1,8 +1,60 @@
-// Create a function that is passed data from user response and returns the HTML structure
-function createHTML(team){
-    console.log(team);
+const fs = require('fs');
 
-    return `<!DOCTYPE html>
+function generateCards(team){
+    let card = "";
+    team.forEach(employee => {
+      if(employee.getRole() === 'Manager') {
+          card += `<div class="card bg-primary">
+                    <h5 class="card-title text-light">${employee.getName()}</h5>
+                    <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-mug-hot"></i> ${employee.getRole()}</h6>
+                    <div class="card-body bg-secondary">                  
+                    <ul class="list-group">
+                      <li class="list-group-item m-1">ID: ${employee.getId()}</li>
+                      <li class="list-group-item m-1">Email: <a href = "mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
+                      <li class="list-group-item m-1">Office number: ${employee.getOfficeNumber()}</li>
+                    </ul>
+                    </div>
+                  </div>\n`
+      } else if(employee.getRole() === 'Engineer'){
+          card += `<div class="card bg-primary">
+                    <h5 class="card-title text-light">${employee.getName()}</h5>
+                    <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-glasses"></i> ${employee.getRole()}</h6>
+                    <div class="card-body bg-secondary">                  
+                    <ul class="list-group">
+                      <li class="list-group-item m-1">ID: ${employee.getId()}</li>
+                      <li class="list-group-item m-1">Email: <a href = "mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
+                      <li class="list-group-item m-1">Github: <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
+                    </ul>
+                    </div>
+                  </div>\n`
+      } else {
+          card += `<div class="card bg-primary">
+                    <h5 class="card-title text-light">${employee.getName()}</h5>
+                    <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-user-graduate"></i> ${employee.getRole()}</h6>
+                    <div class="card-body bg-secondary">                  
+                    <ul class="list-group">
+                      <li class="list-group-item m-1">ID: ${employee.getId()}</li>
+                      <li class="list-group-item m-1">Email: <a href = "mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
+                      <li class="list-group-item m-1">School: ${employee.getSchool()}</li>
+                    </ul>
+                    </div>
+                  </div>\n`
+      }
+    })
+    return card;
+}
+
+function writeHTML (html, team){
+  fs.writeFile('./dist/index.html', html, err => {
+    if(err){
+      console.log(err);
+    }
+    console.log('Creating HTML');
+  })
+}
+
+function createHTML(team){
+    const html = `<!DOCTYPE html>
     <html lang="en">
         <head>
             <meta charset="UTF-8">
@@ -18,8 +70,19 @@ function createHTML(team){
                 <h1>My Team</h1>
             </header>
             
-            <main class="d-flex justify-content-center">
-                <div class="card bg-primary">
+            <main id="cardContainer" class="d-flex justify-content-center">
+                  ${generateCards(team)}                  
+            </main>
+            <script src='../src/generateHTML.js'></script>
+        </body>
+    </html>`
+
+    writeHTML(html, team);
+}
+
+module.exports = createHTML;
+
+{/* <div class="card bg-primary">
                     <h5 class="card-title text-light">Joseph</h5>
                     <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-mug-hot"></i> Manager</h6>
                     <div class="card-body bg-secondary">                  
@@ -29,32 +92,4 @@ function createHTML(team){
                         <li class="list-group-item m-1">Office number: </li>
                       </ul>
                     </div>
-                </div>
-                <div class="card bg-primary">
-                    <h5 class="card-title text-light">Joseph</h5>
-                    <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-glasses"></i> Engineer</h6>
-                    <div class="card-body bg-secondary">                  
-                      <ul class="list-group">
-                        <li class="list-group-item m-1">ID: </li>
-                        <li class="list-group-item m-1">Email: <a href = "mailto: abc@example.com">joseph@gmail.com</a></li>
-                        <li class="list-group-item m-1">Github: </li>
-                      </ul>
-                    </div>
-                </div>
-                <div class="card bg-primary">
-                    <h5 class="card-title text-light">Joseph</h5>
-                    <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-user-graduate"></i> Inter</h6>
-                    <div class="card-body bg-secondary">                  
-                      <ul class="list-group">
-                        <li class="list-group-item m-1">ID: </li>
-                        <li class="list-group-item m-1">Email: <a href = "mailto: abc@example.com">joseph@gmail.com</a></li>
-                        <li class="list-group-item m-1">School: </li>
-                      </ul>
-                    </div>
-                </div>
-            </main>
-        </body>
-    </html>`
-}
-
-module.exports = createHTML;
+                </div> */}
