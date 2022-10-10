@@ -5,6 +5,7 @@ const createHTML = require('./generateHTML');
 const inquirer = require('inquirer');
 const teamArray = [];
 
+// Prompts user with questions to create a Manager object
 function getManager(){
     inquirer
         .prompt([
@@ -75,6 +76,7 @@ function getManager(){
         })
 }
 
+// Prompts user with questions to create an Engineer object
 function getEngineer(){
     inquirer
         .prompt([
@@ -144,6 +146,7 @@ function getEngineer(){
         })
 }
 
+// Prompts user with questions to creat an Intern object
 function getIntern(){
     inquirer
         .prompt([
@@ -182,7 +185,7 @@ function getIntern(){
             }, {
                 name: "school",
                 type: "input",
-                message: "What is the school does the intern attend",
+                message: "What school does the intern attend",
                 validate: (ans) => {
                     if(ans === ""){
                         return "Please provide a school name";                        

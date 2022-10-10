@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// Iterate through the teamArray and return html based on .getRole()
 function generateCards(team){
     let card = "";
     team.forEach(employee => {
@@ -44,8 +45,9 @@ function generateCards(team){
     return card;
 }
 
-function writeHTML (html, team){
-  fs.writeFile('./dist/index.html', html, err => {
+// Write the file using the provided data
+function writeHTML (fileName, html){
+  fs.writeFile(fileName, html, err => {
     if(err){
       console.log(err);
     }
@@ -53,6 +55,7 @@ function writeHTML (html, team){
   })
 }
 
+// Provides the html template that will be passed to writeHTML
 function createHTML(team){
     const html = `<!DOCTYPE html>
     <html lang="en">
@@ -77,19 +80,7 @@ function createHTML(team){
         </body>
     </html>`
 
-    writeHTML(html, team);
+    writeHTML('./dist/index.html', html);
 }
 
 module.exports = createHTML;
-
-{/* <div class="card bg-primary">
-                    <h5 class="card-title text-light">Joseph</h5>
-                    <h6 class="card-subtitle mb-2 text-light"><i class="fa fa-mug-hot"></i> Manager</h6>
-                    <div class="card-body bg-secondary">                  
-                      <ul class="list-group">
-                        <li class="list-group-item m-1">ID: </li>
-                        <li class="list-group-item m-1">Email: <a href = "mailto: abc@example.com">joseph@gmail.com</a></li>
-                        <li class="list-group-item m-1">Office number: </li>
-                      </ul>
-                    </div>
-                </div> */}
