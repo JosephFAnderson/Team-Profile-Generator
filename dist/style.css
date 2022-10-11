@@ -1,0 +1,22 @@
+header{
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    margin: 35px 150px;
+}
+
+li{
+    font-size: 12px;
+}
+
+ul{
+    margin: 15px;
+}
+
+.card{
+    margin: 5px;
+}
