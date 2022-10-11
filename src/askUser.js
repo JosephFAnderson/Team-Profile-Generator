@@ -47,7 +47,7 @@ function getManager(){
                 message: "What is the team manager's office number? (Just provide the number)",
                 validate: (ans) => {
                     if(isNaN(ans)){
-                        return "please enter only numbers";                        
+                        return "Please enter only numbers";                        
                     }
                     return true;                   
                 }

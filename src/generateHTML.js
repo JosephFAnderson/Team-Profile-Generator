@@ -24,7 +24,7 @@ function generateCards(team){
                     <ul class="list-group">
                       <li class="list-group-item m-1">ID: ${employee.getId()}</li>
                       <li class="list-group-item m-1">Email: <a href = "mailto: ${employee.getEmail()}">${employee.getEmail()}</a></li>
-                      <li class="list-group-item m-1">Github: <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
+                      <li class="list-group-item m-1">Github: <a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a></li>
                     </ul>
                     </div>
                   </div>\n`
