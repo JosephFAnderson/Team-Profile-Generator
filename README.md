@@ -23,9 +23,8 @@ It will be located in the dist folder.
 
 ![Show html location](./dist/images/showIndex.png)
 
-Here is a walkthrough of the useage of the application.
+Here is a [video demo](https://drive.google.com/file/d/1B2fR2xMOaN2qtYv-t9utl6B-3mi5iG5O/view?usp=sharing) of the useage of the application.
 
-![Video Demo](https://drive.google.com/file/d/1B2fR2xMOaN2qtYv-t9utl6B-3mi5iG5O/view?usp=sharing)
 ## License
 N/A
 
